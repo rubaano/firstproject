@@ -1,4 +1,4 @@
-name: firstpro
+name: firstproject
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -37,6 +37,8 @@ dependencies:
   ##firbase packages
   firebase_core:
   cloud_firestore:
+  firebase_auth:
+  ##
   http:
   fab_circular_menu: ^1.0.2
   eva_icons_flutter: ^3.0.2
@@ -81,8 +83,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - images/
+#  assets:
+#    - images/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

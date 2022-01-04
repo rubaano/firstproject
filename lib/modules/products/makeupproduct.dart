@@ -1,9 +1,8 @@
-import 'package:firstpro/modules/products/makeupdetails.dart';
-import 'package:firstpro/modules/products/product.dart';
-import 'package:firstpro/newModle/product.dart';
-import 'package:firstpro/server/product_server.dart';
-import 'package:firstpro/shared/components/product_widget.dart';
-import 'package:flutter/cupertino.dart';
+
+
+import 'package:firstproject/newModle/product.dart';
+import 'package:firstproject/server/product_server.dart';
+import 'package:firstproject/shared/components/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -32,22 +31,8 @@ class makeupproducts extends StatefulWidget {
 
 class _makeupproductsState extends State<makeupproducts> {
 
-  bool _loading=false;
   final ProductServer _server=ProductServer();
-  // void _loadProduct()async{
-  //   setState(() {
-  //     _loading=true;
-  //   });
-  //   products = await _server.getAllProduct()??[];
-  //   setState(() {
-  //     _loading=false;
-  //   });
-  // }
-  @override
-  void initState() {
-    super.initState();
-    // _loadProduct();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

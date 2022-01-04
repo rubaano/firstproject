@@ -1,18 +1,15 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:firstpro/intro_screen/Intro.dart';
-import 'package:firstpro/modules/add_product/addproduct.dart';
-import 'package:firstpro/modules/login/loginn.dart';
-import 'package:firstpro/modules/myaccount.dart';
-import 'package:firstpro/modules/products/makeupproduct.dart';
-import 'package:firstpro/server/product_server.dart';
-import 'package:firstpro/shared/components/components.dart';
-import 'package:firstpro/shared/components/product_widget.dart';
-import 'package:firstpro/shared/network/remote/local.dart';
+import 'package:firstproject/intro_screen/Intro.dart';
+import 'package:firstproject/modules/add_product/addproduct.dart';
+import 'package:firstproject/server/product_server.dart';
 
-//import 'package:firstpro/ward.dart';
+
+
 import 'package:flutter/material.dart';
-import 'allcanncedfood.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
+
+import '../myaccount.dart';
+import 'makeupproduct.dart';
 
 class productstype extends StatefulWidget {
   @override
@@ -48,7 +45,7 @@ class _productstypeState extends State<productstype> {
       backgroundColor: Colors.white70,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title:const Text(
           'shopping now',
           style: TextStyle(
               fontWeight: FontWeight.w900,

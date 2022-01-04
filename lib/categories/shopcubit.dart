@@ -1,8 +1,6 @@
-import 'package:firstpro/enddd/end_point.dart';
-import 'package:firstpro/shared/network/remote/dio.dart';
 
-import 'package:bloc/bloc.dart';
-import 'package:firstpro/categories/shopstate.dart';
+import 'package:firstproject/categories/shopstate.dart';
+import 'package:firstproject/enddd/end_point.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,17 +22,17 @@ class ShopCubit extends Cubit<ShopStates> {
   }
 
   void getCategories() {
-    diohelper
-        .getdata(
-      url: GET_CATEGORIES,
-    )
-        .then((value) {
-     // categoriesModel = CategoriesModel.fromJson(value.data);
-
-      emit(ShopSuccessCategoriesState());
-    }).catchError((error) {
-      print(error.toString());
-      emit(ShopErrorCategoriesState());
-    });
+    // diohelper
+    //     .getdata(
+    //   url: GET_CATEGORIES,
+    // )
+    //     .then((value) {
+    //  // categoriesModel = CategoriesModel.fromJson(value.data);
+    //
+    //   emit(ShopSuccessCategoriesState());
+    // }).catchError((error) {
+    //   print(error.toString());
+    //   emit(ShopErrorCategoriesState());
+    // });
   }
 }

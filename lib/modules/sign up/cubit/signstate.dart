@@ -1,4 +1,6 @@
-import 'package:firstpro/model/login_model.dart';
+
+
+import 'package:firstproject/model/login_model.dart';
 
 abstract class signupstates{}
 class signupinitialstate extends signupstates{}
@@ -16,5 +18,8 @@ class signupsuccessstate extends signupstates{
 class signuperrorstate extends signupstates {
 
   final String error;
+  set error(String e){
+    error=e;
+  }
   signuperrorstate(this.error);
 }

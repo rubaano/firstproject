@@ -1,25 +1,24 @@
-import 'package:firstpro/categories/categoriesscreen.dart';
-import 'package:firstpro/categories/shopcubit.dart';
-import 'package:firstpro/modules/login/cubitt/cubit.dart';
-import 'package:firstpro/modules/products/makeupproduct.dart';
-import 'package:firstpro/modules/products/typepro.dart';
-import 'package:firstpro/modules/sign%20up/cubit/cubit.dart';
-import 'package:firstpro/modules/sign%20up/sign%20up.dart';
+
+import 'package:firstproject/categories/shopcubit.dart';
+import 'package:firstproject/modules/login/cubitt/cubit.dart';
+import 'package:firstproject/modules/products/typepro.dart';
+import 'package:firstproject/modules/sign%20up/cubit/cubit.dart';
+import 'package:firstproject/modules/sign%20up/sign%20up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../Login_Screen.dart';
 import '../modules/login/loginn.dart';
 
 class IntroScreen extends StatelessWidget {
+  const IntroScreen({ Key? key}):super(key: key);
   @override
   Widget build(BuildContext context) {
-    print('intro screen');
     return Scaffold(
       body: Column(children: [
+        //for image
         Container(
           height: 450,
-          decoration: BoxDecoration(
+          decoration:const BoxDecoration(
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(50),
               topLeft: Radius.circular(50),
@@ -27,12 +26,13 @@ class IntroScreen extends StatelessWidget {
               bottomRight: Radius.circular(15),
             ),
             color: Colors.white38,
-            image: new DecorationImage(
+            image:  DecorationImage(
               image: AssetImage("images/goods.jpg"),
               fit: BoxFit.cover,
             ),
           ),
         ),
+        // for buttons
         Padding(
           padding: const EdgeInsetsDirectional.only(start: 10, end: 10),
           child: Column(
@@ -66,7 +66,7 @@ class IntroScreen extends StatelessWidget {
                     color: Colors.deepPurpleAccent,
                   ),
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -76,13 +76,13 @@ class IntroScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => BlocProvider<logincubit>(
-                                  create: (context) => logincubit(),
+                            builder: (context) => BlocProvider<LoginCubit>(
+                                  create: (context) => LoginCubit(),
                                   child: Login(),
                                 )),
                       );
                     },
-                    child: Text(
+                    child:const Text(
                       'LOGIN',
                       style: TextStyle(
                         color: Colors.white,
@@ -95,7 +95,7 @@ class IntroScreen extends StatelessWidget {
                     color: Colors.deepPurpleAccent,
                   ),
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -105,14 +105,14 @@ class IntroScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BlocProvider<signupcubit>(
-                            create: (context) => signupcubit(),
+                          builder: (context) => BlocProvider<SignUpCubit>(
+                            create: (context) => SignUpCubit(),
                             child: RegisterScreen(),
                           ),
                         ),
                       );
                     },
-                    child: Text(
+                    child:const Text(
                       'SIGN UP',
                       style: TextStyle(
                         color: Colors.white,
@@ -125,34 +125,6 @@ class IntroScreen extends StatelessWidget {
                     color: Colors.deepPurpleAccent,
                   ),
                 ),
-                /*   Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    color: Colors.pinkAccent,
-                    child: MaterialButton(
-                      onPressed: () {
-
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context)=>LoginScreen(),
-                          ),
-                        );
-
-
-                      },
-                      child: Text(
-                        'SIGN UP',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-
-                    ),
-                  ),
-                ]
-            ),*/
               ]),
         ),
       ]),

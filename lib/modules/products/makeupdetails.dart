@@ -1,4 +1,5 @@
-import 'package:firstpro/newModle/product.dart';
+
+import 'package:firstproject/newModle/product.dart';
 import 'package:flutter/material.dart';
 
 class makeupdetails extends StatelessWidget {

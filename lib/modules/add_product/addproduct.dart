@@ -1,12 +1,7 @@
-import 'dart:io';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firstpro/newModle/product.dart';
-import 'package:firstpro/server/product_server.dart';
-import 'package:image_picker/image_picker.dart';
-
-//import 'package:flutter/src/painting/decoration.dart';
-import 'package:firstpro/modules/products/makeupproduct.dart';
+import 'package:firstproject/server/product_server.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:image_picker/image_picker.dart';

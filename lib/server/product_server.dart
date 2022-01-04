@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firstpro/newModle/discount.dart';
-import 'package:firstpro/newModle/product.dart';
-import 'package:firstpro/newModle/type.dart';
+import 'package:firstproject/newModle/discount.dart';
+import 'package:firstproject/newModle/product.dart';
+import 'package:firstproject/newModle/type.dart';
+
 
 class ProductServer {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

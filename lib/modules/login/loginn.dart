@@ -1,81 +1,74 @@
-import 'package:firstpro/modules/products/typepro.dart';
-import 'package:firstpro/shared/components/components.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firstproject/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc/src/bloc_provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter/src/widgets/form.dart';
 import 'cubitt/cubit.dart';
 import 'cubitt/states.dart';
 
-class Login extends StatelessWidget {
-  //State<Login> createState() => _LoginState();
-  dynamic emailController = TextEditingController();
-  var nameController = TextEditingController();
-  var lastNameController = TextEditingController();
+class Login extends StatefulWidget {
 
-  dynamic passwordController = TextEditingController();
+  Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final emailController = TextEditingController();
+
+  final nameController = TextEditingController();
+
+  final lastNameController = TextEditingController();
+
+  final passwordController = TextEditingController();
 
   String? value;
 
-  bool ispassword = true;
+  bool isPassword = true;
 
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<logincubit, loginstates>(
-      listener: (context, state) {
-        if (state is loginsuccessstate) {
-          print('is successful');
-        }
-        if (state is loginsuccessstate) {
-          if (state.loginmodell.status) {
-            print(state.loginmodell.message);
-
-            print(state.loginmodell.data.Token);
-
-            Fluttertoast.showToast(
-                msg: state.loginmodell.message,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 5,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
-          } else {
-            print(state.loginmodell.message);
-            Fluttertoast.showToast(
-                msg: state.loginmodell.message,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 5,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0);
+    return BlocListener<LoginCubit, loginstates>(
+        listener: (context, state) {
+          if (state is loginsuccessstate) {
+            print('is successful');
           }
-        }
-      },
-      child: Scaffold(
+          if (state is loginsuccessstate) {
+            Fluttertoast.showToast(msg: state.loginmodell.message);
+            // Toast.show(state.loginmodell.message, context);
+          }
+          if (state is loginerrorstate) {
+            print('4444444444444 ${state.error}');
+            // Toast.show(state.error.toString(), context);
+              Fluttertoast.showToast(
+                  msg: 'state.error.toString()',
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 5,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+            }
+
+        },
+        child: Scaffold(
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Center(
               child: SingleChildScrollView(
                 child: Form(
-                  key: formkey,
+                  key: formKey,
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
-                    //mainAxisAlignment:  MainAxisAlignment.center,
                     children: [
-                      Container(
+                      const SizedBox(
                         height: 200,
                         child: Image(
                           image: AssetImage('images/goods.jpg'),
                         ),
                       ),
-                      Center(
+                      const Center(
                         child: Text(
                           'welcome',
                           style: TextStyle(
@@ -86,95 +79,96 @@ class Login extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40.0,
                       ),
                       defaultfield(
-                        type: TextInputType.emailAddress,
-                        controller: emailController,
-                        prefix: Icons.email,
-                        label: 'Email',
-                          validate: (value)
-                          {
-                            if (value.isEmpty){
-                              return ('Email is too short !');
+                          type: TextInputType.emailAddress,
+                          controller: emailController,
+                          prefix: Icons.email,
+                          label: 'Email',
+                          validate: (String? value) {
+                            if (value == null) {
+                              return 'this field is requierd';
                             }
-
-                            return null;
-                          }
-                      ),
-                      SizedBox(
+                            if (value.isEmpty) {
+                              return ('Email is too short !');
+                            } else if (!(value.contains('@email.com') ||
+                                value.contains('@gmail.com'))) {
+                              return 'Invalid input';
+                            } else {
+                              return null;
+                            }
+                          }),
+                      const SizedBox(
                         height: 15.0,
                       ),
-
                       TextFormField(
-                          controller: passwordController,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
-                          onFieldSubmitted: (String value){
-                            print(value);
-                          },
-                          onChanged: (String value){
-                            print(value);
-                          },
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            prefixIcon: Icon(
-                              Icons.lock,
-                           color: Colors.deepPurpleAccent, ),
-                            suffixIcon:IconButton(
-                              icon: Icon(logincubit.get(context).suffixIcon),
-                              onPressed:logincubit.get(context).changeSuffexIcon,
-                            ),
-                            border: OutlineInputBorder(),
+                        controller: passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                            color: Colors.deepPurpleAccent,
                           ),
-                          validator: ( value)
-                          {
-                            if (value!.isEmpty){
-                              return ('password is too short !');
-                            }
+                          suffixIcon: IconButton(
+                            icon: Icon(LoginCubit.get(context).suffixIcon),
+                            onPressed: LoginCubit.get(context).changeSuffexIcon,
+                          ),
+                          border: const OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return ('password is too short !');
+                          }
 
-                            return null;
-                          },
-
-
+                          return null;
+                        },
                       ),
-
-
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
-                      BlocBuilder<logincubit, loginstates>(
-                        builder: (context, state) =>
-                            defaultbuttom(
+                      BlocBuilder<LoginCubit, loginstates>(
+                        builder: (context, state) => defaultbuttom(
                           text: 'Login',
                           function: () {
-                            if(formkey.currentState!.validate()){
-
-                              logincubit.get(context).userlogin(
+                            if (formKey.currentState!.validate()) {
+                              LoginCubit.get(context).userLogin(
                                   email: emailController.text,
                                   password: passwordController.text);
-
-                            };
-
-
+                            }
                           },
-
                           radius: 15,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
-                            onPressed: () {},
-                            child: Text(
+                            onPressed: () async{
+                            var a= await Fluttertoast.showToast(
+                                  msg: 'state.error.toString()',
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 5,
+                                  backgroundColor: Colors.green,
+                                  textColor: Colors.red,
+                                  fontSize: 16.0);
+                            },
+                            child: const Text(
                               'Forgotten Password',
-                              style:
-                              TextStyle(color: Colors.deepPurpleAccent),
+                              style: TextStyle(color: Colors.deepPurpleAccent),
                             ),
                           ),
                         ],
@@ -185,7 +179,6 @@ class Login extends StatelessWidget {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }

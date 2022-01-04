@@ -1,4 +1,6 @@
-import 'package:firstpro/model/login_model.dart';
+
+
+import 'package:firstproject/model/login_model.dart';
 
 abstract class signupstates{}
 class signupinitialstate extends signupstates{}

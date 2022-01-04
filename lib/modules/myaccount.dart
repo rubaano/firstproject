@@ -1,4 +1,4 @@
-import 'package:firstpro/modules/products/makeupdetails.dart';
+
 import 'package:flutter/material.dart';
 
 class usermodel {
